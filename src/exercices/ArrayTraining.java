@@ -1,3 +1,11 @@
+
+
+import java.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.Arrays;
+import java.util.stream.Stream; 
+import java.io.*; 
+
 public class ArrayTraining {
 
     /**
@@ -5,8 +13,7 @@ public class ArrayTraining {
      * @return an empty int array of size n, ie: {0, 0, 0}
      */
     public int[] emptyIntArray(int n) {
-
-        return null;
+        return new int[n];
     }
 
     /**
@@ -14,8 +21,7 @@ public class ArrayTraining {
      * @return an empty String array of size n, ie: {null, null}
      */
     public String[] emptyStringArray(int n) {
-
-        return null;
+        return new String[n];
     }
 
     /**
@@ -25,8 +31,7 @@ public class ArrayTraining {
      * @return an int array with a, b and c values, ie: {3, 2, 1}
      */
     public int[] intArray(int a, int b, int c) {
-
-        return null;
+        return new int[] {a,b,c};
     }
 
     /**
@@ -37,8 +42,7 @@ public class ArrayTraining {
      * ie: {"test", sample", "value"}
      */
     public String[] stringArray(String a, String b, String c) {
-
-        return null;
+        return new String[] {a,b,c};
     }
 
     /**
@@ -46,8 +50,7 @@ public class ArrayTraining {
      * @return length of the array, ie: 1
      */
     public int length(int[] array) {
-
-        return 0;
+        return array.length;
     }
 
     /**
@@ -55,8 +58,7 @@ public class ArrayTraining {
      * @return first value of the array, ie: 3
      */
     public int firstValue(int[] array) {
-
-        return 0;
+        return array[0];
     }
 
     /**
@@ -64,8 +66,7 @@ public class ArrayTraining {
      * @return last value of the array, ie: 1
      */
     public int lastValue(int[] array) {
-
-        return 0;
+        return array[array.length-1];
     }
 
     /**
@@ -74,8 +75,7 @@ public class ArrayTraining {
      * @return value of the array at position, ie: 2
      */
     public int valueAtPosition(int[] array, int position) {
-
-        return 0;
+        return array[position];
     }
 
     /**
@@ -85,17 +85,17 @@ public class ArrayTraining {
      * @return the array with the value replaced at position, ie: {3, 4, 5}
      */
     public int[] replace(int[] array, int value, int position) {
-
-        return null;
+        array[position] = value;
+        return array;
     }
+
 
     /**
      * @param array, ie: {1, 2, 3}
      * @return sum of values of the array, ie: 6
      */
     public int sum(int[] array) {
-
-        return 0;
+        return IntStream.of(array).sum();
     }
 
     /**
@@ -104,17 +104,18 @@ public class ArrayTraining {
      * @return if array contains searched value, ie: true
      */
     public boolean contains(int[] array, int search) {
-
-        return false;
+        return !(Arrays.asList(array).contains(search));
     }
 
     /**
      * @param array, ie: {"sample", "value"}
      * @return array where all words are capitalized, ie: {"Sample", "Value"}
      */
-    public String[] capitalize(String[] array) {
-
-        return null;
+    public String[] capitalize(String[] array) {        
+        for (int index = 0 ; index < array.length ; index++) {
+            array[index] = array[index].substring(0,1).toUpperCase() + array[index].substring(1,array[index].length());
+        }
+        return array;
     }
 
     /**
@@ -124,8 +125,7 @@ public class ArrayTraining {
      * are equals, ie: false
      */
     public boolean equals(int[] first, int[] second) {
-
-        return false;
+        return Arrays.equals(first, second);
     }
 
     /**
@@ -133,8 +133,7 @@ public class ArrayTraining {
      * @return array with reversed values, ie: {3, 2, 1}
      */
     public int[] reverse(int[] array) {
-
-        return null;
+        return reverse(array);
     }
 
     /**
@@ -144,7 +143,8 @@ public class ArrayTraining {
      * ie: {1, 2, 3, 4, 5}
      */
     public int[] concat(int[] first, int[] second) {
-
-        return null;
+        int[] both = Arrays.copyOf(first, first.length + second.length);
+        System.arraycopy(second, 0, both, first.length, second.length);
+        return both;
     }
 }
